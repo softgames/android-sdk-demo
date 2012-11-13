@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SoftgamesTester</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="provider">Provider</string>
+    <string name="name">Name</string>
+    <string name="mcc">MCC</string>
+    <string name="mnc">MNC</string>
+
+</resources>
