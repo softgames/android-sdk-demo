@@ -6,7 +6,6 @@ import static de.softgames.tester.CommonUtilities.STAG;
 import com.google.android.gcm.GCMRegistrar;
 
 import android.content.Context;
-import android.provider.Settings;
 import android.util.Log;
 
 import java.io.IOException;
@@ -36,16 +35,13 @@ public final class ServerUtilities {
 	 */
 	static boolean register(final Context context, final String regId) {
 		Log.i(STAG, "registering device (regId = " + regId + ")");
-		String serverUrl = SERVER_URL;
+		String serverUrl = SERVER_URL + "/" + context.getPackageName();
 		Map<String, String> params = new HashMap<String, String>();
 
-		String deviceId = Settings.Secure.getString(
-				context.getContentResolver(), Settings.Secure.ANDROID_ID);
+		String deviceId = Installation.id(context);
 
-		params.put("device[application_id]", context.getPackageName());
 		params.put("device[device_id]", deviceId);
 		params.put("device[registration_id]", regId);
-		params.put("device[device_type]", "0");
 
 		long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
 		// Once GCM returns a registration id, we need to register it in the
@@ -95,17 +91,12 @@ public final class ServerUtilities {
 	 */
 	static void unregister(final Context context, final String regId) {
 		Log.i(STAG, "unregistering device (regId = " + regId + ")");
-
-		String serverUrl = SERVER_URL + regId;
-
-		Map<String, String> params = new HashMap<String, String>();
-
-		params.put("device[application_id]", context.getPackageName());
-		params.put("device[registration_id]", regId);
-		params.put("device[device_type]", "0");
+		
+		String deviceId = Installation.id(context);
+		String serverUrl = SERVER_URL + "/" + context.getPackageName() + "/" +  deviceId;
 
 		try {
-			delete(serverUrl, params);
+			delete(serverUrl, null);
 			GCMRegistrar.setRegisteredOnServer(context, false);
 			// String message = context.getString(R.string.server_unregistered);
 			// CommonUtilities.displayMessage(context, message);
@@ -169,19 +160,19 @@ public final class ServerUtilities {
 				}
 			}
 			String body = bodyBuilder.toString();
-			Log.v(STAG, "Posting '" + body + "' to " + url);
 			bytes = body.getBytes();
 		}
+		
+		Log.v(STAG, "Send '" + method + "' to " + url);
 
 		HttpURLConnection conn = null;
 		try {
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setUseCaches(false);
-
 			conn.setRequestMethod(method);
 
 			if (params != null) {
+				conn.setDoOutput(true);
+				conn.setUseCaches(false);
 				conn.setFixedLengthStreamingMode(bytes.length);
 				conn.setRequestProperty("Content-Type",
 						"application/x-www-form-urlencoded;charset=UTF-8");
@@ -190,7 +181,6 @@ public final class ServerUtilities {
 				out.write(bytes);
 				out.close();
 			}
-
 			// handle the response
 			int status = conn.getResponseCode();
 			if (status != 200) {

@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 		if (regId.equals("")) {
 			GCMRegistrar.register(this, SENDER_ID);
 		} else {
+			GCMRegistrar.setRegisteredOnServer(this, false);
 			if (!GCMRegistrar.isRegisteredOnServer(this)) {
 				final Context context = this;
 				_registerTask = new AsyncTask<Void, Void, Void>() {

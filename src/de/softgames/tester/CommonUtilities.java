@@ -10,11 +10,12 @@ public final class CommonUtilities {
 	 * URL of the notification server
 	 */
 	static final String SERVER_URL = "http://mobile-notifications.softgames.de/devices";
+	// static final String SERVER_URL = "http://10.0.2.2:3000/devices";
 
 	/**
 	 * Google API project id registered to use GCM.
 	 */
-	static final String SENDER_ID = "99374070246";
+	static final String SENDER_ID = "1079642456342";
 
 	/**
 	 * Tag used on log messages.
