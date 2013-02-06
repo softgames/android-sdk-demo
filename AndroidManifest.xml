@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+<!-- Check this -->
     <permission
         android:name="de.softgames.tester.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
