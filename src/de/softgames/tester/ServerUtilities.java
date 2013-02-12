@@ -1,12 +1,6 @@
 package de.softgames.tester;
 
 import static de.softgames.tester.CommonUtilities.SERVER_URL;
-import static de.softgames.tester.CommonUtilities.STAG;
-
-import com.google.android.gcm.GCMRegistrar;
-
-import android.content.Context;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,14 +13,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.google.android.gcm.GCMRegistrar;
+
 /**
  * Helper class used to communicate with the server.
  */
 public final class ServerUtilities {
 
-	private static final int MAX_ATTEMPTS = 6;
+	public static final int MAX_ATTEMPTS = 6;
 	private static final int BACKOFF_MILLI_SECONDS = 2000;
 	private static final Random random = new Random();
+	private static final String STAG = "ServerUtilities";
 
 	/**
 	 * Register this account/device pair within the server.
@@ -63,7 +63,7 @@ public final class ServerUtilities {
 				// Here we are simplifying and retrying on any error; in a real
 				// application, it should retry only on unrecoverable errors
 				// (like HTTP error code 503).
-				Log.e(STAG, "Failed to register on attempt " + i, e);
+				Log.e(STAG, "Failed to register on attempt " + i);
 				if (i == MAX_ATTEMPTS) {
 					break;
 				}
@@ -80,9 +80,7 @@ public final class ServerUtilities {
 				backoff *= 2;
 			}
 		}
-		// String message = context.getString(R.string.server_register_error,
-		// MAX_ATTEMPTS);
-		// CommonUtilities.displayMessage(context, message);
+		
 		return false;
 	}
 

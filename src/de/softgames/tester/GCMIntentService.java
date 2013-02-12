@@ -1,8 +1,6 @@
 package de.softgames.tester;
 
 import static de.softgames.tester.CommonUtilities.SENDER_ID;
-import static de.softgames.tester.CommonUtilities.STAG;
-
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
@@ -19,6 +17,7 @@ import android.util.Log;
 public class GCMIntentService extends GCMBaseIntentService {
 
 	private static int _message_id = 0;
+	private static final String STAG = "GCMIntentService";
 
 	public GCMIntentService() {
 		super(SENDER_ID);
