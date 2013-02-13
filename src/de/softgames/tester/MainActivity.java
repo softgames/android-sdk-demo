@@ -12,7 +12,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gcm.GCMRegistrar;
 
@@ -64,12 +63,14 @@ public class MainActivity extends Activity {
 		GCMRegistrar.checkManifest(this);
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		
-		if (regId.equals("")) {			
+		if (regId == null || regId.equals("")) {	
+			Log.d(TAG, "regId is empty");
 			GCMRegistrar.register(getApplicationContext(), SENDER_ID);
 		} else {
+			Log.d(TAG, "registered with regId: " + regId);
 			GCMRegistrar.setRegisteredOnServer(this, false);
 			if (!GCMRegistrar.isRegisteredOnServer(this)) {
-				final Context context = this;
+				final Context context = getApplicationContext();
 				_registerTask = new AsyncTask<Void, Void, Void>() {
 
 					@Override
@@ -83,10 +84,9 @@ public class MainActivity extends Activity {
 						// unregistered callback upon completion, but
 						// GCMIntentService.onUnregistered() will ignore it.
 						if (!registered) {
-							Toast.makeText(context, res.getQuantityText(R.plurals.server_register_error, ServerUtilities.MAX_ATTEMPTS), Toast.LENGTH_SHORT).show();
-							
 							GCMRegistrar.unregister(context);
 						}
+						
 						return null;
 					}
 
@@ -113,7 +113,12 @@ public class MainActivity extends Activity {
 		if (_registerTask != null) {
 			_registerTask.cancel(true);
 		}
-		GCMRegistrar.onDestroy(this);
+		try {
+			GCMRegistrar.onDestroy(this);
+		} catch (Exception e) {
+			Log.e(TAG, "an error occurred destroying the Activity", e);
+		}
+		
 		super.onDestroy();
 	}
 

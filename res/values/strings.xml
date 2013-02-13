@@ -8,6 +8,7 @@
     <string name="mcc">MCC</string>
     <string name="mnc">MNC</string>
     <string name="not_applicable">NA</string>
+    <string name="registered_on_server">Registered on server</string>
     <string name="wifi_connection">Connected via wifi to %1$s</string>
     <plurals name="server_register_error">
         <item quantity="one">Failed to register after one attempt</item>
