@@ -22,9 +22,7 @@ public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
     private AsyncTask<Void, Void, Void> _registerTask;
     private TelephonyManager telephonyManager;
-    /*
-     * MNC: Mobile network code MCC: Mobile communication component
-     */
+    /* MNC: Mobile network code MCC: Mobile communication component */
     private TextView provider, mnc, mcc;
 
     @Override
@@ -80,7 +78,7 @@ public class MainActivity extends Activity {
                     protected Void doInBackground(Void... params) {
                         boolean registered = ServerUtilities.register(context,
                                 regId);
-                        /*
+                        /**
                          * At this point all attempts to register with the app
                          * server failed, so we need to unregister the device
                          * from GCM - the app will try to register again when it

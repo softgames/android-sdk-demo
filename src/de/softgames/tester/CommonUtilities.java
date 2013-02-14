@@ -1,10 +1,10 @@
-package de.softgames.tester;
-
-
 /**
  * Helper class providing methods and constants common to other classes in the
  * app.
  */
+package de.softgames.tester;
+
+
 public final class CommonUtilities {
 
     /* URL of the notification server */

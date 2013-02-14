@@ -1,3 +1,6 @@
+/**
+ * Helper class used to communicate with the server.
+ */
 package de.softgames.tester;
 
 
@@ -22,9 +25,6 @@ import android.widget.Toast;
 import com.google.android.gcm.GCMRegistrar;
 
 
-/**
- * Helper class used to communicate with the server.
- */
 public final class ServerUtilities {
 
     public static final int MAX_ATTEMPTS = 6;
@@ -38,7 +38,7 @@ public final class ServerUtilities {
      * 
      * @return whether the registration succeeded or not.
      */
-    static boolean register(final Context context, final String regId) {
+    public static boolean register(final Context context, final String regId) {
         Log.i(STAG, "registering device (regId = " + regId + ")");
         res = context.getApplicationContext().getResources();
         String serverUrl = SERVER_URL + "/" + context.getPackageName();
@@ -51,7 +51,7 @@ public final class ServerUtilities {
 
         long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
 
-        /*
+        /**
          * Once GCM returns a registration id, we need to register it in the
          * demo server. As the server might be down, we will retry it a couple
          * times.
@@ -69,7 +69,7 @@ public final class ServerUtilities {
                 Log.d(STAG, "registered on server!");
                 return true;
             } catch (IOException e) {
-                /*
+                /**
                  * Here we are simplifying and retrying on any error; in a real
                  * application, it should retry only on unrecoverable errors
                  * (like HTTP error code 503).
@@ -98,7 +98,7 @@ public final class ServerUtilities {
     /**
      * Unregister this account/device pair within the server.
      */
-    static void unregister(final Context context, final String regId) {
+    public static void unregister(final Context context, final String regId) {
         Log.i(STAG, "unregistering device (regId = " + regId + ")");
         res = context.getApplicationContext().getResources();
         String deviceId = Installation.id(context);
@@ -115,7 +115,7 @@ public final class ServerUtilities {
                             ServerUtilities.MAX_ATTEMPTS), Toast.LENGTH_SHORT)
                     .show();
         } catch (IOException e) {
-            /*
+            /**
              * At this point the device is unregistered from GCM, but still
              * registered in the server. We could try to unregister again, but
              * it is not necessary: if the server tries to send a message to the
