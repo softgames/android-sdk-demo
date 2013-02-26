@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import de.softgames.sdk.SGRegistrator;
-import de.softgames.sdk.ui.SoftgamesUI;
 
 
 public class MainActivity extends Activity {
@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
     // messaging
     public SGRegistrator registrator;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +33,18 @@ public class MainActivity extends Activity {
         final Resources res = getResources();
 
         // Test notification - debug
-        SoftgamesUI.generateTestNotification(getApplicationContext());
+        // SoftgamesUI.generateTestNotification(getApplicationContext());
 
+        /*
+         * You must instantiate this object in order to get working the push
+         * notifications.
+         */
         registrator = new SGRegistrator(this);
 
         provider = (TextView) findViewById(R.id.provider_name_value);
         mcc = (TextView) findViewById(R.id.provider_mcc_value);
         mnc = (TextView) findViewById(R.id.provider_mnc_value);
+
 
         try {
             Log.d(TAG, "Trying to get mobile data connection info...");
@@ -66,7 +72,10 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Unknown error", e);
         }
 
-        // Init registration on GCM
+        /*
+         * this method must be invoked in order to register the device on the
+         * softgames server
+         */
         registrator.registerMe();
     }
 
@@ -77,8 +86,22 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_exit:
+            android.os.Process.killProcess(android.os.Process.myPid());
+            break;
+
+        default:
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onDestroy() {
-        // Finalizes the async task initiated by the registrator
+        // This method is called to make sure that the async task initiated by
+        // the registrator is terminated
         registrator.killTask();
         super.onDestroy();
     }
