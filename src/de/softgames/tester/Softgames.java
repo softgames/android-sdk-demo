@@ -17,6 +17,8 @@ public class Softgames extends Application {
          */
         SGSettings.setLauncherActivity(MainActivity.class);
 
+        /* The game's name must be set in order to track the ads */
+        SGSettings.setGameName("MyAwesomeGame");
         /*
          * In case your app does not require an active internet connection,
          * please set this VAR as false

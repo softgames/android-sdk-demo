@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import de.softgames.sdk.SGRegistrator;
+import de.softgames.sdk.ui.SoftgamesUI;
 
 
 public class MainActivity extends Activity {
