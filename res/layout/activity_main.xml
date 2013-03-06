@@ -74,5 +74,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
+    
+    <Button android:layout_width="match_parent" android:layout_height="60dp" android:text="Restart App" android:id="@+id/btn_restartApp"/>
 
 </TableLayout>

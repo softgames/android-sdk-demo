@@ -3,6 +3,7 @@ package de.softgames.tester;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -11,8 +12,12 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import de.softgames.demo_sdk.R;
 import de.softgames.sdk.SGRegistrator;
+import de.softgames.sdk.SoftgamesIntro;
 import de.softgames.sdk.ui.SoftgamesUI;
 
 
@@ -26,6 +31,7 @@ public class MainActivity extends Activity {
     // messaging
     public SGRegistrator registrator;
 
+    private Button buttonRestarApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +40,7 @@ public class MainActivity extends Activity {
         final Resources res = getResources();
 
         // Test notification - debug
-        // SoftgamesUI.generateTestNotification(getApplicationContext());
+        SoftgamesUI.generateTestNotification(getApplicationContext());
 
         /*
          * You must instantiate this object in order to get working the push
@@ -46,6 +52,17 @@ public class MainActivity extends Activity {
         mcc = (TextView) findViewById(R.id.provider_mcc_value);
         mnc = (TextView) findViewById(R.id.provider_mnc_value);
 
+        buttonRestarApp = (Button) findViewById(R.id.btn_restartApp);
+        buttonRestarApp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),
+                        SoftgamesIntro.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         try {
             Log.d(TAG, "Trying to get mobile data connection info...");
