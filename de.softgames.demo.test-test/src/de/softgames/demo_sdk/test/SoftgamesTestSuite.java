@@ -1,17 +1,19 @@
 package de.softgames.demo_sdk.test;
 
 
+import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 import de.softgames.sdk.OpenxAdView;
-import de.softgames.sdk.SoftgamesIntro;
+import de.softgames.sdk.SoftgamesActivity;
+import de.softgames.sdk.util.NetworkUtilities;
 import de.softgames.sdk.util.SGSettings;
 
 
 public class SoftgamesTestSuite extends
-        ActivityInstrumentationTestCase2<SoftgamesIntro> {
+        ActivityInstrumentationTestCase2<SoftgamesActivity> {
 
     public static final int OPENX_ZONE_ID = 2;
 
@@ -19,7 +21,7 @@ public class SoftgamesTestSuite extends
 
     public static final String DELIVERY_URL = "87.230.102.59:82/openx/www/delivery";
 
-    public SoftgamesIntro softgamesIntro;
+    public SoftgamesActivity SoftgamesActivity;
 
     public ViewFlipper flipper;
 
@@ -35,10 +37,10 @@ public class SoftgamesTestSuite extends
 
     @SuppressWarnings("deprecation")
     public SoftgamesTestSuite() {
-        super("de.softgames.sdk", SoftgamesIntro.class);
+        super("de.softgames.sdk", SoftgamesActivity.class);
     }
 
-    public SoftgamesTestSuite(Class<SoftgamesIntro> activityClass) {
+    public SoftgamesTestSuite(Class<SoftgamesActivity> activityClass) {
         super(activityClass);
     }
 
@@ -49,18 +51,18 @@ public class SoftgamesTestSuite extends
 
         setActivityInitialTouchMode(false);
 
-        softgamesIntro = getActivity();
+        SoftgamesActivity = getActivity();
 
-        flipper = (ViewFlipper) softgamesIntro
+        flipper = (ViewFlipper) SoftgamesActivity
                 .findViewById(de.softgames.sdk.R.id.softgames_master);
 
-        splashScreen = (LinearLayout) softgamesIntro
+        splashScreen = (LinearLayout) SoftgamesActivity
                 .findViewById(de.softgames.sdk.R.id.splashScreen);
 
-        adsLayout = (LinearLayout) softgamesIntro
+        adsLayout = (LinearLayout) SoftgamesActivity
                 .findViewById(de.softgames.sdk.R.id.adsLayout);
 
-        adView = (OpenxAdView) softgamesIntro
+        adView = (OpenxAdView) SoftgamesActivity
                 .findViewById(de.softgames.sdk.R.id.adview);
 
     }

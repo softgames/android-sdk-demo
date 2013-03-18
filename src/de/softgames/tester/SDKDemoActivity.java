@@ -17,11 +17,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import de.softgames.demo_sdk.R;
 import de.softgames.sdk.SGRegistrator;
-import de.softgames.sdk.SoftgamesIntro;
-import de.softgames.sdk.ui.SoftgamesUI;
+import de.softgames.sdk.SoftgamesActivity;
 
 
-public class MainActivity extends Activity {
+public class SDKDemoActivity extends Activity {
 
     private static final String TAG = "MainActivity";
     private TelephonyManager telephonyManager;
@@ -40,7 +39,7 @@ public class MainActivity extends Activity {
         final Resources res = getResources();
 
         // Test notification - debug
-        SoftgamesUI.generateTestNotification(getApplicationContext());
+        // SoftgamesUI.generateTestNotification(getApplicationContext());
 
         /*
          * You must instantiate this object in order to get working the push
@@ -58,7 +57,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),
-                        SoftgamesIntro.class);
+                        SoftgamesActivity.class);
                 startActivity(intent);
                 finish();
             }

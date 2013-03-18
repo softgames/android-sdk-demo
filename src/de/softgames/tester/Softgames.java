@@ -15,7 +15,7 @@ public class Softgames extends Application {
          * Init your app's entry point activity. This is the activity that you
          * want to be called when the app starts
          */
-        SGSettings.setLauncherActivity(MainActivity.class);
+        SGSettings.setLauncherActivity(SDKDemoActivity.class);
 
         /* The game's name must be set in order to track the ads */
         SGSettings.setGameName("MyAwesomeGame");
