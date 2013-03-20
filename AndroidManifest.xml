@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.softgames.tester"
+    package="de.softgames.demo_sdk"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+	
+	<!-- Permissions Needed by Google Cloud Messaging -->
     <permission
         android:name="de.softgames.tester.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="de.softgames.tester.permission.C2D_MESSAGE" />
+        android:protectionLevel="signature" />    
+    <uses-permission android:name="de.softgames.tester.permission.C2D_MESSAGE" />    
     <!-- App receives GCM messages. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <!-- GCM connects to Google Services. -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- GCM requires a Google account. -->
+    <!-- GCM requires a Google account for devices running android below version 4. -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <!-- Keeps the processor from sleeping when a message is received. -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+   <!-- App specific permissions -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
+        android:name="de.softgames.tester.Softgames"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
-            android:name="de.softgames.tester.MainActivity"
-            android:label="@string/app_name" >
+            android:name="de.softgames.sdk.SoftgamesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        
+        <activity android:name="de.softgames.tester.SDKDemoActivity" android:label="@string/app_name"></activity>
+  
+        
         <receiver
-            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:name="de.softgames.sdk.gcm.SGBroadcastReceiver"             
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -46,8 +56,9 @@
                 <category android:name="de.softgames.tester" />
             </intent-filter>
         </receiver>
-
-        <service android:name=".GCMIntentService" />
+ 
+        <service android:name="de.softgames.sdk.GCMIntentService"/>
+       
     </application>
 
 </manifest>
