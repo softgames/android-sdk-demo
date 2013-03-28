@@ -72,8 +72,6 @@ public class SoftgamesTestSuite extends
         assertNotNull("The launcher activity can't be null!",
                 SGSettings.getLauncherActivity());
 
-        assertTrue("A app name must be provided", !SGSettings.getGameName()
-                .equals(""));
 
     }
 

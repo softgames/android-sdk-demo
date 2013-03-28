@@ -1,4 +1,4 @@
-package de.softgames.tester;
+package de.softgames.demo_sdk;
 
 
 import android.app.Activity;
