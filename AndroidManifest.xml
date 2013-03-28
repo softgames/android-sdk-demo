@@ -10,9 +10,9 @@
 	
 	<!-- Permissions Needed by Google Cloud Messaging -->
     <permission
-        android:name="de.softgames.demo_sdk.permission.C2D_MESSAGE"
+        android:name="de.softgames.demo.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />    
-    <uses-permission android:name="de.softgames.demo_sdk.permission.C2D_MESSAGE" />    
+    <uses-permission android:name="de.softgames.demo.permission.C2D_MESSAGE" />    
     
     <!-- App receives GCM messages. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
