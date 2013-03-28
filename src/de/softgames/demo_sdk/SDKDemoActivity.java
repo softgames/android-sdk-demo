@@ -1,4 +1,4 @@
-package de.softgames.tester;
+package de.softgames.demo_sdk;
 
 
 import android.app.Activity;
@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import de.softgames.demo_sdk.R;
+import de.softgames.demo.R;
 import de.softgames.sdk.SGRegistrator;
 import de.softgames.sdk.SoftgamesActivity;
 
