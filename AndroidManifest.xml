@@ -33,7 +33,7 @@
         <meta-data android:name="ADWHIRL_KEY" android:value="4cd5c43077a24f398e002227bf25939c" />
         <activity
             android:name="de.softgames.sdk.SoftgamesActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

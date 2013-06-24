@@ -9,12 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import de.softgames.sdk.SoftgamesActivity;
 
 
 public class SDKDemoActivity extends Activity implements OnClickListener {
 
     private Button buttonRestarApp;
+    private ImageButton sgButtonNoAds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,14 @@ public class SDKDemoActivity extends Activity implements OnClickListener {
         buttonRestarApp = (Button) findViewById(R.id.btn_restartApp);        
         buttonRestarApp.setOnClickListener(this);
         
+        sgButtonNoAds =  (ImageButton) findViewById(R.id.sg_button_no_ads);
+        sgButtonNoAds.setOnClickListener(new OnClickListener() {            
+            @Override
+            public void onClick(View v) {
+                // TODO Launch here set the purchase flow for the no ads product 
+                Toast.makeText(getApplicationContext(), "Launch purchase flow", Toast.LENGTH_SHORT).show();
+            }
+        });
         
     }
 
