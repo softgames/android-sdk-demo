@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" 
     android:padding="8dp"
     android:orientation="vertical"
-    android:background="#f5f5f5">
+    android:background="#0f0f0f">
 
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -26,6 +26,7 @@
        
    <view 
        class="de.softgames.sdk.ui.SGAdView"
+       android:id="@+id/sg_adview"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"/>
 </LinearLayout>

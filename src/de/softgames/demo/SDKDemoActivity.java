@@ -12,12 +12,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import de.softgames.sdk.SoftgamesActivity;
+import de.softgames.sdk.ui.SGAdView;
 
 
 public class SDKDemoActivity extends Activity implements OnClickListener {
 
     private Button buttonRestarApp;
     private ImageButton sgButtonNoAds;
+    private SGAdView sgAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +36,27 @@ public class SDKDemoActivity extends Activity implements OnClickListener {
         sgButtonNoAds.setOnClickListener(new OnClickListener() {            
             @Override
             public void onClick(View v) {
-                // TODO Launch here set the purchase flow for the no ads product 
+                // TODO Launch here the purchase flow for the no ads product 
                 Toast.makeText(getApplicationContext(), "Launch purchase flow", Toast.LENGTH_SHORT).show();
             }
         });
-        
+            
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    public void hideBannerAds(){
+        runOnUiThread(new Runnable() {            
+            @Override
+            public void run() {
+                sgAdView = (SGAdView) findViewById(R.id.sg_adview);
+                sgAdView.setVisibility(View.GONE);                
+            }
+        });
     }
 
     @Override

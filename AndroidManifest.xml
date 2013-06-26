@@ -23,37 +23,43 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="de.softgames.demo.SoftgamesApplication"        
+        android:name="de.softgames.demo.SoftgamesApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher" >
-        <!-- Do not forget to add this key which should be provided by softgames -->
-        <meta-data android:name="ADWHIRL_KEY" android:value="4cd5c43077a24f398e002227bf25939c" />
+
+        <!--
+             This activity must be included and set as the launcher activity. 
+        	 you can set the orientation according to the orientation of your game.
+        -->
         <activity
             android:name="de.softgames.sdk.SoftgamesActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.google.ads.AdActivity"
-              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
-        
+        <!-- The admob activity, needed for the ads banner -->
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name="de.softgames.demo.SDKDemoActivity"
             android:label="@string/app_name" >
         </activity>
 
+       <!-- These receivers and services must be included -->
         <receiver
             android:name="de.softgames.sdk.gcm.SGBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
+				<!-- Set here the name of the game package -->
                 <category android:name="de.softgames.demo" />
             </intent-filter>
         </receiver>

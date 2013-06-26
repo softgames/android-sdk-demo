@@ -26,12 +26,6 @@ public class SoftgamesApplication extends Application {
         SGSettings.setLauncherActivity(SDKDemoActivity.class);
 
         /*
-         * In case your app does not require an active internet connection,
-         * please set this VAR as false
-         */
-        SGSettings.setInternetRequired(true);
-
-        /*
          * This method sets the teaser image that is going to be
          * displayed in the cross-promotion page. This image is related to your
          * game
