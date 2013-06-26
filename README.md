@@ -1,4 +1,4 @@
-android-tester
+Demo SDK 2.0
 ==============
 
-The softgames android test application.
+An App demoing the Softgames SDK usage
