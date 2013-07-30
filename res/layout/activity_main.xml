@@ -16,13 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Restart App" /> 
+        android:text="Restart App"/> 
     
    <view
        class="de.softgames.sdk.ui.MoreGamesButton"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" 
-       android:padding="8dp"/>
+       android:padding="8dp"
+       />
        
    <view 
        class="de.softgames.sdk.ui.SGAdView"

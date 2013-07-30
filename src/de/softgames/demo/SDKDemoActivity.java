@@ -1,7 +1,6 @@
 package de.softgames.demo;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,12 +10,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import de.softgames.sdk.SoftgamesAbstractActivity;
 import de.softgames.sdk.SoftgamesActivity;
 import de.softgames.sdk.ui.SGAdView;
-import de.softgames.sdk.ui.SoftgamesUI;
 
 
-public class SDKDemoActivity extends Activity implements OnClickListener {
+public class SDKDemoActivity extends SoftgamesAbstractActivity implements OnClickListener {
 
     private Button buttonRestarApp;
     private ImageButton sgButtonNoAds;
@@ -28,7 +27,7 @@ public class SDKDemoActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         // Test notification - debug
-        SoftgamesUI.generateTestNotification(getApplicationContext());
+//        SoftgamesUI.generateTestNotification(getApplicationContext());
 
         buttonRestarApp = (Button) findViewById(R.id.btn_restartApp);        
         buttonRestarApp.setOnClickListener(this);
